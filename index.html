@@ -1,15 +1,318 @@
-<!DOCTYPE>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>patricia-home page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patricia E S Kargbo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --terra: #c75f3e;
+            --terra-light: #e8967a;
+            --forest: #2d5a3d;
+            --cream: #faf6ef;
+            --parchment: #f2ebe0;
+            --ink: #1c1a16;
+            --muted: #8a8070;
+            --border: #ddd4c3;
+            --card-bg: #ffffff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background: var(--parchment);
+            color: var(--ink);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            line-height: 1.75;
+        }
+
+        .topnav {
+            background: var(--cream);
+            border-bottom: 1px solid var(--border);
+            overflow: hidden;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .topnav a {
+            float: left;
+            color: var(--muted);
+            text-align: center;
+            padding: 15px 22px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            transition: color 0.2s;
+            border-bottom: 2px solid transparent;
+        }
+
+        .topnav a:hover { color: var(--terra); }
+
+        .topnav a.active {
+            color: var(--terra);
+            border-bottom: 2px solid var(--terra);
+        }
+
+        header {
+            background: var(--forest);
+            padding: 76px 10vw 68px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            bottom: -60px; right: -60px;
+            width: 340px; height: 340px;
+            border-radius: 50%;
+            border: 60px solid rgba(255,255,255,0.04);
+            pointer-events: none;
+        }
+
+        .header-eyebrow {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--terra-light);
+            margin-bottom: 14px;
+        }
+
+        header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.1;
+            margin-bottom: 10px;
+        }
+
+        header h2 {
+            font-size: 1rem;
+            font-weight: 400;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 22px;
+        }
+
+        .header-badges { display: flex; flex-wrap: wrap; gap: 10px; }
+
+        .badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border: 1px solid rgba(255,255,255,0.25);
+            color: rgba(255,255,255,0.85);
+            padding: 5px 14px;
+            border-radius: 4px;
+        }
+
+        .badge.filled {
+            background: var(--terra);
+            border-color: var(--terra);
+            color: #fff;
+        }
+
+        main {
+            max-width: 840px;
+            margin: 0 auto;
+            padding: 52px 6vw;
+        }
+
+        .bio-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 2.2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 4px rgba(60,40,20,0.06);
+        }
+
+        .bio-header {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            margin-bottom: 1.4rem;
+        }
+
+        .bio-avatar {
+            width: 72px; height: 72px;
+            border-radius: 10px;
+            background: var(--parchment);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            color: var(--muted);
+            text-align: center;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .bio-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
+
+        .bio-name { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+        .bio-role { font-size: 13px; color: var(--terra); font-weight: 500; }
+
+        .bio-text {
+            font-size: 14.5px;
+            color: #5a5448;
+            line-height: 1.9;
+            margin-bottom: 1.4rem;
+            border-left: 3px solid var(--terra);
+            padding-left: 1rem;
+        }
+
+        .bio-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+        .bio-tags span {
+            font-size: 12px;
+            font-weight: 500;
+            padding: 4px 13px;
+            border-radius: 100px;
+            border: 1px solid var(--border);
+            color: var(--forest);
+            background: rgba(45,90,61,0.07);
+        }
+
+        .section {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 2.2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 4px rgba(60,40,20,0.06);
+        }
+
+        .section-label {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--terra);
+            margin-bottom: 6px;
+        }
+
+        .section h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 1rem;
+        }
+
+        .section p { font-size: 14.5px; color: #5a5448; line-height: 1.9; }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border);
+            font-size: 13px;
+            color: var(--muted);
+            background: var(--cream);
+        }
+
+        footer span { color: var(--terra); font-weight: 600; }
+
+        @media (max-width: 600px) {
+            header { padding: 48px 6vw 44px; }
+            .bio-header { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
 </head>
 <body>
-<header>
-  <dia> Patricia E.S. Kargbo</dia>
-</header>
-<main></main>
-<footer>
-  &copy; Patricia E.S. Kargbo, DIB, Sem 2 ,905006107, 2026
-</footer>
+
+    <div class="topnav">
+        <a class="active" href="#home">Home</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+        <a href="#about">About</a>
+    </div>
+
+    <header id="home">
+        <p class="header-eyebrow">Portfolio · Limkokwing University</p>
+        <h1>Patricia E S Kargbo</h1>
+        <h2>Entrepreneur &amp; Business Coach Intern · Innovation SL</h2>
+        <div class="header-badges">
+            <span class="badge filled">DIB</span>
+            <span class="badge">Diploma in International Business</span>
+            <span class="badge">Innovation SL</span>
+        </div>
+    </header>
+
+    <main>
+
+        <div class="bio-card" id="about">
+            <div class="bio-header">
+                <div class="bio-avatar">Photo</div>
+                <div>
+                    <p class="bio-name">Innovation SL · Business Coach Intern</p>
+                    <p class="bio-role">Student · Entrepreneur · Business Coach</p>
+                </div>
+            </div>
+
+            <p class="bio-text">
+                A Diploma in International Business student at Limkokwing University of Creative
+                Technology, driven by an entrepreneurial spirit and a deep commitment to empowering
+                the next generation of African business leaders. Beyond the classroom, Patricia
+                channels her passion into real-world impact as a Young Business Coach Intern at
+                Innovation SL — where she supports aspiring entrepreneurs with the tools, mindset,
+                and strategy they need to thrive. As a practicing entrepreneur herself, she bridges
+                theory and practice every day, building ventures and cultivating leadership from
+                the ground up.
+            </p>
+
+            <div class="bio-tags">
+                <span>International Business</span>
+                <span>Entrepreneurship</span>
+                <span>Business Coaching</span>
+                <span>Innovation SL</span>
+                <span>Limkokwing University</span>
+            </div>
+        </div>
+
+        <div class="section" id="projects">
+            <p class="section-label">Academic Focus</p>
+            <h3>Why do I study International Business?</h3>
+            <p>
+                In a world that is more connected than ever, understanding how business operates
+                across borders is not just an academic pursuit — it is a superpower. International
+                Business gives me the frameworks to think globally while acting locally, to understand
+                trade, commerce, culture, and strategy in ways that are directly applicable to
+                building ventures right here in Sierra Leone and beyond. As an entrepreneur, every
+                lesson learned in the classroom becomes a tool I deploy in the real world. That
+                alignment between study and practice is what makes this field deeply personal to me.
+            </p>
+        </div>
+
+        <div class="section" id="CareerGoals">
+            <p class="section-label">Vision</p>
+            <h3>Career Goals</h3>
+            <p>
+                My primary ambition is to build businesses that create meaningful employment and
+                economic opportunity in Sierra Leone and across West Africa. I aspire to grow as
+                a business strategist and coach — empowering young entrepreneurs, especially women,
+                to launch and scale ventures with confidence. Through my ongoing work at Innovation SL
+                and my studies in international business, I am laying the groundwork for a career
+                that sits at the intersection of enterprise, mentorship, and social impact.
+                I believe that entrepreneurship is one of the most powerful forces for transformation,
+                and I intend to dedicate my career to proving exactly that.
+            </p>
+        </div>
+
+    </main>
+
+    <footer id="contact">
+        <p>Built by <span>Patricia E S Kargbo</span> · Diploma in International Business · Limkokwing University · 2026</p>
+    </footer>
+
 </body>
 </html>
